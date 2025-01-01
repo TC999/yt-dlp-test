@@ -1,0 +1,25 @@
+name: 下载
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: '影片地址'
+        type: string
+        required: true
+jobs:
+  download:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 设置 Python
+        uses: actions/setup-python@v5.3.0
+        with:
+          python-version: '3.8'
+      - name: 安装 yt-dlp
+        run: python3 -m pip install -U "yt-dlp[default]"
+      - name: 下载
+        run: yt-dlp URL ${{ inputs.url }}
+      - name: 打包
+        uses: actions/upload-artifact@v4.5.0
+        with:
+          name: video
