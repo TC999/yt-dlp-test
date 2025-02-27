@@ -18,7 +18,7 @@ jobs:
       - name: 安装 yt-dlp
         run: python3 -m pip install -U "yt-dlp[default]"
       - name: 创建文件夹
-        run: video
+        run: mkdir video
       - name: 下载
         run: cd video && yt-dlp URL ${{ inputs.url }} --extractor-args "youtube:po_token=web.gvs+${{secrets.PO_TOKEN}}"
       - name: 打包
