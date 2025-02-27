@@ -20,7 +20,7 @@ jobs:
       - name: 创建文件夹
         run: mkdir video
       - name: 下载
-        run: cd video && yt-dlp URL ${{ inputs.url }} --extractor-args "youtube:po_token=web.gvs+${{secrets.PO_TOKEN}}"
+        run: cd video && yt-dlp URL ${{ inputs.url }} --extractor-args "youtube:po_token=web.gvs${{secrets.PO_TOKEN}}"
       - name: 打包
         uses: actions/upload-artifact@v4.5.0
         with:
