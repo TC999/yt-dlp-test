@@ -17,9 +17,11 @@ jobs:
           python-version: '3.8'
       - name: 安装 yt-dlp
         run: python3 -m pip install -U "yt-dlp[default]"
+      - name: 创建文件夹
+        run: video
       - name: 下载
-        run: yt-dlp URL ${{ inputs.url }}
+        run: cd video && yt-dlp URL ${{ inputs.url }} --extractor-args "youtube:po_token=web.gvs+${{secrets.PO_TOKEN}}"
       - name: 打包
         uses: actions/upload-artifact@v4.5.0
         with:
-          name: video
+          path: video
